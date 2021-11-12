@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','HomeController@GetHomePage');
+
 Route::get('/login','LoginController@LoginPage');
 Route::post('/login','LoginController@PostLogin');
+
 Route::get('/logout','LogoutController@GetLogout');
+
+
+Route::get('/userlist','UserListController@UserListPage')->middleware('checkrole');
