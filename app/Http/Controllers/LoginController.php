@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function LoginPage(){
-        return view('login',['message'=>'']);
+        return view('login',['message'=>'','name'=>null]);
     }
     public function PostLogin(Request $request){
         $email = $request->input('email');
@@ -17,6 +17,7 @@ class LoginController extends Controller
         if($user->Email==$email && $user->Password==$password){
             $request->session()->put(['user'=>$user->Name]);
             $request->session()->put(['role'=>$user->Role]);
+            $request->session()->put(['email'=>$user->Email]);
             // $request->session()->flush();
             return redirect()->action('HomeController@GetHomePage');
         }
