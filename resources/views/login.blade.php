@@ -10,7 +10,6 @@
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
                     <form id="login-form" class="form" action="/login" method="post">
-                        <p style="color:red">{{$err}}</p>
                         @csrf
                         <h3 class="text-center text-info" style="color: black">Login</h3>
                         <div class="form-group">
