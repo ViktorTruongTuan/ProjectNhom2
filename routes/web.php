@@ -22,3 +22,6 @@ Route::get('/logout','LogoutController@GetLogout');
 
 
 Route::get('/userlist','UserListController@UserListPage')->middleware('checkrole');
+
+Route::get('/register','registerController@RegisterPage');
+Route::post('/register','registerController@PostRegister');

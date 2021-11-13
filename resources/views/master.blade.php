@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{asset('css/carousel.css')}}">
 <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <title>HannaPetShop</title>
-    @stack('styles')
+    @stack('styles') {{--Dùng Lệnh @push để lấy file css cho từng view phù hợp--}}
 </head>
 <body>
 <div class="container-fuild">
