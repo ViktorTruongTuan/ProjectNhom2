@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function LoginPage(){
-        return view('login',['name'=>null,'err'=>null]);
+        return view('login',['name'=>'','err'=>null]);
     }
     public function PostLogin(Request $request){
         $email = $request->input('email');
