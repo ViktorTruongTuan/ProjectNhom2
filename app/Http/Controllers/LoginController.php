@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function LoginPage(){
-        return view('login',['name'=>null]);
+        return view('login',['name'=>null,'err'=>null]);
     }
     public function PostLogin(Request $request){
         $email = $request->input('email');
         $password = $request->input('password');
         $user = DB::table('userinfor')->where('email', $email)->where('password',$password)->first();
         if($user==null){
-            return view('login',['name'=>'']);
+            return view('login',['name'=>'','err'=>'wrong email or password']);
         }
         if($user->Email==$email && $user->Password==$password){
             $request->session()->put(['user'=>$user->Name]);
