@@ -13,7 +13,7 @@ class registerController extends Controller
     public function PostRegister(Request $request){
         $email=$request->input('email');
         $password=$request->input('password');
-        $telephone=$request->input('telephonw');
+        $telephone=$request->input('telephone');
         $address=$request->input('address');
         $check=DB::table('userinfor')->where('Email',$email)->first();
         if($check!=null){

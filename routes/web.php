@@ -31,6 +31,7 @@ Route::get('deleteproduct/{id}','ProductListController@DeleteProduct');
 
 //Update Product
 Route::get('updateproduct/{id}', 'ProductListController@UpdateProductPage');
+Route::post('/updateproduct','ProductListController@PostUpdateProduct');
 
 Route::get('/userlist','UserListController@UserListPage')->middleware('checkrole');
 
