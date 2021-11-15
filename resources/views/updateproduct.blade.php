@@ -2,7 +2,8 @@
 @section('content')
 <div class="col-6 offset-3">
     <p>{{$message}}</p>
-    <form action="/addproduct" method="POST" enctype="multipart/form-data">
+    <h3>Update product</h3>
+    <form action="/updateproduct" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="exampleFormControlInput1" >Product Name</label>

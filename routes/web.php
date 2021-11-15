@@ -20,17 +20,18 @@ Route::post('/login','LoginController@PostLogin');
 Route::get('/logout','LogoutController@GetLogout');
 
 //ProductList
-Route::get('/productlist','ProductListController@ProductListPage');
+Route::get('/productlist','ProductListController@ProductListPage')->middleware('checkrole');
 
 //Add Product
-Route::get('/addproduct','ProductListController@AddProductListPage');
-Route::post('/addproduct','ProductListController@PostAddProductListPage');
+Route::get('/addproduct','ProductListController@AddProductListPage')->middleware('checkrole');
+Route::post('/addproduct','ProductListController@PostAddProductListPage')->middleware('checkrole');
 
 //Delete Product
-Route::get('deleteproduct/{id}','ProductListController@DeleteProduct');
+Route::get('deleteproduct/{id}','ProductListController@DeleteProduct')->middleware('checkrole');
 
 //Update Product
-Route::get('updateproduct/{id}', 'ProductListController@UpdateProductPage');
+Route::get('updateproduct/{id}', 'ProductListController@UpdateProductPage')->middleware('checkrole');
+Route::post('/updateproduct','ProductListController@PostUpdateProduct')->middleware('checkrole');
 
 Route::get('/userlist','UserListController@UserListPage')->middleware('checkrole');
 
