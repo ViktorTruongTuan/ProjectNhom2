@@ -16,10 +16,10 @@ class AuthMiddleWare
     public function handle($request, Closure $next)
     {
         $role= $request->session()->get('role');
-        if($role=="admin"){
+        if($role=="Admin"){
             return $next($request);
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }
