@@ -11,4 +11,5 @@ class ProductList extends Model
     public $timestamps = false;
     protected $keyType = 'string';
     public $incrementing = false;
+    protected $fillable = ['ProductName','id','Price','Description','PicturePath'];
 }

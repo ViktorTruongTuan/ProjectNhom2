@@ -24,20 +24,15 @@ class ProductListController extends Controller
     public function PostAddProductListPage(Request $request){
         $user = $request->session()->get('user');
         $role = $request->session()->get('role');
-        $productName=$request->input('productname');
-        $productPrice=intval($request->input('productprice'));
-        $productDescription=$request->input('productdescription');
         $fileName=$request->file('picture')->getClientOriginalName();
         $store=$request->file('picture')->storeAs('public/product',$fileName);
         $path='storage/product/'.$fileName;
         $id=IdGenerator::generate(['table' => 'productinfor', 'length' => 6, 'prefix' =>'P']);
         $product = new ProductList;
-        $product->id=$id;
-        $product->ProductName=$productName;
-        $product->Price=$productPrice;
-        $product->Description=$productDescription;
-        $product->PicturePath=$path;
-        $product->save();
+        $insert=$request->all();//lấy ra 1 mảng key-value của input
+        $insert["id"]=$id;//thêm vào 1 cặp key-value của mảng vừa lấy ra
+        $insert["PicturePath"]=$path;
+        ProductList::created($insert);//tạo mới 1 row, lưu ý phải cấu hình Model lại với fillable khai báo các giá trị muốn insert vào bảng
         return view('addproductlist',['name'=>$user,'role'=>$role,'message'=>'Add success']);
     }
 
