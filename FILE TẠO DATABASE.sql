@@ -1,73 +1,60 @@
-﻿USE master
-GO
-if exists(SELECT * FROM master..sysdatabases WHERE name='Project')
-DROP DATABASE Project
-GO
-CREATE DATABASE Project 
-GO
-USE Project
-GO
-CREATE TABLE Authication 
-(Email varchar(100) UNIQUE,
-Password varchar(100) CHECK (LEN(Password) >=5),
-Role varchar(10) DEFAULT 'User')
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 12, 2021 at 02:41 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.3.29
 
-CREATE TABLE UserInfor
-(Email varchar(100) PRIMARY KEY,
-Name varchar(100),
-Telephone varchar(10),
-Address varchar(200))
-
-CREATE TABLE ProductInfor 
-(id varchar(10) PRIMARY KEY,
-ProductName varchar(10),
-Description varchar(500),
-PicturePath varchar(200),
-)
-
-CREATE TABLE OrderInfor 
-(OrderID varchar(10) PRIMARY KEY,
-Email varchar(100) CONSTRAINT FK_Email FOREIGN KEY REFERENCES UserInfor(Email),
-Address varchar(200),
-Name varchar(100),
-Telephone varchar(10),
-TotalPrice int
-)
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE Cart
-(OrderID varchar(10) CONSTRAINT FK_OrderID FOREIGN KEY REFERENCES OrderInfor(OrderID),
-ProductID varchar(10) CONSTRAINT FK_ProductID FOREIGN KEY REFERENCES ProductInfor(ProductID),
-Price int,
-Quantity int
-)
+--
+-- Database: `laravelproject`
+--
 
-CREATE TABLE Staff
-(StaffName varchar(30) PRIMARY KEY,
-Telephone varchar(10),
-Address varchar(100)
-)
+-- --------------------------------------------------------
 
-CREATE TABLE SpaService
-(SpaServiceName varchar(20) PRIMARY KEY,
-Price int,
-Description varchar(300),
-Picture varchar(100)
-)
+--
+-- Table structure for table `userinfor`
+--
 
-CREATE TABLE SpaSchedule
-(
-Time DATE,
-Price int,
-SpaService varchar(20) CONSTRAINT FK_SpaService FOREIGN KEY REFERENCES SpaService(SpaServiceName),
-StaffName varchar(30) CONSTRAINT FK_StaffName FOREIGN KEY REFERENCES Staff(StaffName)
+CREATE TABLE `userinfor` (
+  `Email` varchar(100) NOT NULL,
+  `Name` varchar(100) DEFAULT NULL,
+  `Telephone` varchar(10) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
+  `Role` varchar(10) DEFAULT 'User',
+  `Password` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-)
+--
+-- Dumping data for table `userinfor`
+--
 
+INSERT INTO `userinfor` (`Email`, `Name`, `Telephone`, `Address`, `Role`, `Password`) VALUES
+('admin@gmail.com', 'Admin', NULL, NULL, 'Admin', 'admin'),
+('user@gmail.com', 'Nguyen Van A', '0967123456', '123 đường 456 phường Bảy Tám quận 9 tp HCM', 'User', 'user');
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `userinfor`
+--
+ALTER TABLE `userinfor`
+  ADD PRIMARY KEY (`Email`);
+COMMIT;
 
-
-
- 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
