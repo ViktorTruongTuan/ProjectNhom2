@@ -33,10 +33,28 @@ Route::get('deleteproduct/{id}','ProductListController@DeleteProduct')->middlewa
 Route::get('updateproduct/{id}', 'ProductListController@UpdateProductPage')->middleware('checkrole');
 Route::post('/updateproduct','ProductListController@PostUpdateProduct')->middleware('checkrole');
 
-Route::get('/userlist','UserListController@UserListPage')->middleware('checkrole');
-
 Route::get('/register','registerController@RegisterPage');
 Route::post('/register','registerController@PostRegister');
 
 Route::get('/test','TestControler@getTest');
 Route::post('/test','TestControler@postFile');
+
+//Staff List
+Route::get('/stafflist','StaffListController@index')->middleware('checkrole');
+
+Route::get('/addstaff', 'StaffListController@addStaff')->middleware('checkrole');
+Route::post('/addstaff', 'StaffListController@postAddStaff')->middleware('checkrole');
+
+Route::get('/admin-stafflist/update/{staffname}', 'StaffListController@update')->middleware('checkrole');
+Route::post('/admin-stafflist/update/{staffname}', 'StaffListController@postUpdate')->middleware('checkrole');
+
+Route::get('/admin-stafflist/delete/{staffname}','StaffListController@delete')->middleware('checkrole');
+
+//User List
+Route::get('/userlist','UserListController@index')->middleware('checkrole');
+Route::get('/adduser', 'UserListController@addUser')->middleware('checkrole');
+Route::post('/adduser', 'UserListController@postAddUser')->middleware('checkrole');
+
+Route::get('/admin-userlist/update/{email}', 'UserListController@updateUser')->middleware('checkrole');
+Route::post('/admin-userlist/update/{email}', 'UserListController@postUpdateUser')->middleware('checkrole');
+Route::get('/admin-userlist/delete/{email}', 'UserListController@delete');
