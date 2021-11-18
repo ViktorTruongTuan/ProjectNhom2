@@ -62,7 +62,7 @@ class ProductListController extends Controller
         $product->Price=$productPrice;
         if($request->file('picture')){
             $fileName=$request->file('picture')->getClientOriginalName();
-            $store=$request->file('picture')->storeAs('public/producr',$fileName);
+            $store=$request->file('picture')->storeAs('public/product',$fileName);
             $path='storage/product/'.$fileName;
             $product->PicturePath=$path;
         }

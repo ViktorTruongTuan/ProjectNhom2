@@ -56,10 +56,13 @@
     </div>
 
        <div class="row">
-       <div class="col">
+       <div class="col-12">
         @yield('content') {{-- Tùy chọn content hiển thị--}}
        </div>
        </div>
+
+         @yield('productlist') {{-- Tùy chọn content hiển thị--}}
+
 
        <div class="row">
         @yield('footer') {{--Chưa Hoàn Thành: views/footer.blade.php--}}
