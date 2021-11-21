@@ -40,7 +40,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{{url("/userlist")}}">UserList</a>
-                  <a class="dropdown-item" href="#">Staff Info</a>
+                  <a class="dropdown-item" href="{{url("/stafflist")}}">Staff Info</a>
                   <a class="dropdown-item" href="{{url("/productlist")}}">Products Management</a>
                 </div>
               </li>
