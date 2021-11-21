@@ -21,6 +21,8 @@ Route::get('/logout','LogoutController@GetLogout');
 
 //ProductList
 Route::get('/productlist','ProductListController@ProductListPage')->middleware('checkrole');
+//Search Product
+Route::post('/','ProductListController@SearchByCategory');
 
 //Add Product
 Route::get('/addproduct','ProductListController@AddProductListPage')->middleware('checkrole');
