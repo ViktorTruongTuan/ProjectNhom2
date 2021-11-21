@@ -32,7 +32,7 @@ CREATE TABLE `userinfor` (
   `Telephone` varchar(10) DEFAULT NULL,
   `Address` varchar(200) DEFAULT NULL,
   `Role` varchar(10) DEFAULT 'User',
-  `Password` varchar(20) DEFAULT NULL
+  `Password` varchar(20) DEFAULT NULL   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
