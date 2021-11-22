@@ -83,7 +83,11 @@ class ProductListController extends Controller
     $role = $request->session()->get('role');
     $user = $request->session()->get('user');
     $category = $request->input('Category');
-    $productlist = ProductList::where('Category',$category)->get();
+    if($category=='All'){
+        $productlist = ProductList::all();
+    }else{
+        $productlist = ProductList::where('Category',$category)->get();
+    }
     return view('HOME',['role'=>$role,'name'=>$user,'productlist'=>$productlist]);
     }
 }
