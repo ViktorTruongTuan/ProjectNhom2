@@ -25,6 +25,7 @@ class registerController extends Controller
                 'Telephone' => $telephone,
                 'Address'=>$address
             ]);
+            return redirect('/');
         }
 
     }
