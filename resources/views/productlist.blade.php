@@ -21,7 +21,6 @@
             <td><form  action="/updateproduct/{{$product->id}}">@csrf<button class="btn btn-info" type="submit">Update</button></form></td>
           </tr>
           @endforeach
-
       </tbody>
     </table>
   </div>

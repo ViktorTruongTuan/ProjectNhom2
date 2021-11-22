@@ -29,10 +29,11 @@ class ProductListController extends Controller
         $path='storage/product/'.$fileName;
         $id=IdGenerator::generate(['table' => 'productinfor', 'length' => 6, 'prefix' =>'P']);
         $product = new ProductList;
-        $insert=$request->all();//lấy ra 1 mảng key-value của input
+        $insert=$request->input();//lấy ra 1 mảng key-value của input
         $insert["id"]=$id;//thêm vào 1 cặp key-value của mảng vừa lấy ra
         $insert["PicturePath"]=$path;
-        ProductList::created($insert);//tạo mới 1 row, lưu ý phải cấu hình Model lại với fillable khai báo các giá trị muốn insert vào bảng
+        ProductList::create($insert);//tạo mới 1 row, lưu ý phải cấu hình Model lại với fillable khai báo các giá trị muốn insert vào bảng
+
         return view('addproductlist',['name'=>$user,'role'=>$role,'message'=>'Add success']);
     }
 
@@ -45,8 +46,9 @@ class ProductListController extends Controller
         $productDesc=$product->Description;
         $productPrice=$product->Price;
         $productPicture=$product->PicturePath;
+        $productCategory=$product->Category;
         return view('updateproduct',['message'=>'','name'=>$user,'role'=>$role,'productName'=>$productName,
-    'productPrice'=>$productPrice,'productDesc'=>$productDesc,'productPicture'=>$productPicture]);
+    'productPrice'=>$productPrice,'productDesc'=>$productDesc,'productPicture'=>$productPicture,'Category'=>$productCategory]);
     }
 
     public function PostUpdateProduct(Request $request){
@@ -56,10 +58,12 @@ class ProductListController extends Controller
         $productName=$request->input('productname');
         $productPrice=intval($request->input('productprice'));
         $productDescription=$request->input('productdescription');
+        $productCategory=$request->input('Category');
         $product=ProductList::where('id',$id)->first();
         $product->ProductName=$productName;
         $product->Description=$productDescription;
         $product->Price=$productPrice;
+        $product->Category=$productCategory;
         if($request->file('picture')){
             $fileName=$request->file('picture')->getClientOriginalName();
             $store=$request->file('picture')->storeAs('public/product',$fileName);
@@ -68,12 +72,22 @@ class ProductListController extends Controller
         }
         $product->save();
         return redirect('/productlist');
-
-
     }
 
     public function DeleteProduct($id){
         ProductList::where('id',$id)->delete();
         return redirect('/productlist');
+    }
+
+    public function SearchByCategory(Request $request){
+    $role = $request->session()->get('role');
+    $user = $request->session()->get('user');
+    $category = $request->input('Category');
+    if($category=='All'){
+        $productlist = ProductList::all();
+    }else{
+        $productlist = ProductList::where('Category',$category)->get();
+    }
+    return view('HOME',['role'=>$role,'name'=>$user,'productlist'=>$productlist]);
     }
 }

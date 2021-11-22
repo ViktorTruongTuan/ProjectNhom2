@@ -22,6 +22,14 @@
           <label for="exampleFormControlTextarea1" >Description</label>
           <textarea class="form-control" name="productdescription" rows="3" required >{{$productDesc}}</textarea>
         </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" name="Category">
+              <option value="Dog Food">Dog Food</option>
+              <option value="Cat Food">Cat Food</option>
+              <option value="Accessory">Accessory</option>
+            </select>
+          </div>
         <button type="submit" class="btn btn-primary" onclick="return confirm('Are You Want To Update?')">Submit</button>
       </form>
 
