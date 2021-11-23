@@ -9,12 +9,32 @@ use Illuminate\Support\Arr;
 class BuyProductController extends Controller
 {
     public function AddToCart(Request $request,$id,$quantity){
+        $role = $request->session()->get('role');
+        $user = $request->session()->get('user');
+        // $request->session()->forget('cart');
+        if(intval($quantity)==0){
+            $quantity==1;
+        }
         $product=ProductList::find($id);
-        $total=intval($product->Price)*intval($quantity);
+        $productPrice=intval($product->Price);
+        $total=$productPrice*intval($quantity);
         $cart = $request->session()->get('cart');
-            $cart[$product->id]=array('ProductID'=>$product->id,'ProductName'=>$product->ProductName,'Total'=>$total);
+            $cart[$product->id]=array('ProductID'=>$product->id,'ProductName'=>$product->ProductName,'Total'=>$total,'Quantity'=>$quantity,'Price'=>$productPrice);
             $request->session()->put('cart',$cart);
-        $items = $request->session()->get('cart');
-        return view('test',['Product'=>$items]);
+        $products = $request->session()->get('cart');
+        return redirect('/cartlist');
     }
+    public function CartListPage(Request $request){
+        $products = $request->session()->get('cart');
+        $role = $request->session()->get('role');
+        $user = $request->session()->get('user');
+        return view('cartlist',['role'=>$role,'name'=>$user,'products'=>$products]);
+    }
+    public function DeleteCartItem(Request $request,$id){
+        $cart = $request->session()->get('cart');
+        unset($cart[$id]);
+        $request->session()->put('cart',$cart);
+        return redirect('/cartlist');
+    }
+
 }

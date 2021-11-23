@@ -21,6 +21,10 @@ Route::get('/logout','LogoutController@GetLogout');
 
 //ProductList
 Route::get('/productlist','ProductListController@ProductListPage')->middleware('checkrole');
+//Add CartList
+Route::get('/cartlist','BuyProductController@CartListPage');
+//Delete CartItem
+Route::get('deletecartitem/{id}','BuyProductController@DeleteCartItem');
 //Search Product
 Route::post('/','ProductListController@SearchByCategory');
 
@@ -39,7 +43,7 @@ Route::get('/register','registerController@RegisterPage');
 Route::post('/register','registerController@PostRegister');
 
 //Test
-Route::get('/cart/{id}/{quantity}','BuyProductController@AddToCart');
+Route::get('/cart/{id}/{quantity}','BuyProductController@AddToCart')->middleware('checkrole');
 Route::post('/test','TestControler@postFile');
 
 //Staff List
