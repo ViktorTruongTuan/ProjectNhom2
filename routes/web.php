@@ -38,7 +38,8 @@ Route::post('/updateproduct','ProductListController@PostUpdateProduct')->middlew
 Route::get('/register','registerController@RegisterPage');
 Route::post('/register','registerController@PostRegister');
 
-Route::get('/test','TestControler@getTest');
+//Test
+Route::get('/cart/{id}/{quantity}','BuyProductController@AddToCart');
 Route::post('/test','TestControler@postFile');
 
 //Staff List
