@@ -25,6 +25,9 @@ Route::get('/productlist','ProductListController@ProductListPage')->middleware('
 Route::get('/cartlist','BuyProductController@CartListPage');
 //Delete CartItem
 Route::get('deletecartitem/{id}','BuyProductController@DeleteCartItem');
+//Buy Product
+Route::get('/createorderinfor','BuyProductController@CreateOrderInforPage');
+Route::post('/createorderinfor','BuyProductController@PostCreateOrderInfor');
 //Search Product
 Route::post('/','ProductListController@SearchByCategory');
 
