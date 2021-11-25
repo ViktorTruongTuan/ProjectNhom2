@@ -14,10 +14,28 @@ $(document).ready(() => {
         }
     }
     buyproduct = (id) => {
-        console.log(id)
         let inputval = $('#' + id).val()
         $('.' + id).attr('href', `cart/${id}/${inputval}`)
         console.log()
     }
+    changeTotalPrice=(id,price)=>{
+    quantity=$('#' + id).val()
+    total=parseInt(quantity)*parseInt(price)
+    $('.total.'+id).empty();
+    $('.total.'+id).append(total)
+    }
+    //Cart Change Total Price
+    DecreaseTotal=(id,price)=>{
+    decrease(id)
+    changeTotalPrice(id,price)
+    let inputval = $('#' + id).val()
+    $('.' + id).attr('href', `cart/${id}/${inputval}`)
+    }
+
+    IncreaseTotal=(id,price)=>{
+    increase(id)
+    changeTotalPrice(id,price)
+    }
+
 
 })

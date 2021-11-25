@@ -29,6 +29,18 @@
               <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{url("/")}}">Home<a>
                 <a class="nav-item nav-link active" href="{{url("")}}">Spa Service</a>
+                {{-- Cart Infor --}}
+                @if($name!=null && $role=="User")
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                      Order Infor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="{{url("/cartlist")}}">Cart</a>
+                      <a class="dropdown-item" href="{{url("/orderhistory")}}">Order History</a>
+                    </div>
+                  </li>
+                  @endif
                 <a class="nav-item nav-link active" href="{{url("")}}">About Us</a>
                 @if($name==null)
                 <a class="nav-item nav-link active" href="{{url("/login")}}">Login</a>
@@ -42,6 +54,7 @@
                   <a class="dropdown-item" href="{{url("/userlist")}}">UserList</a>
                   <a class="dropdown-item" href="{{url("/stafflist")}}">Staff Info</a>
                   <a class="dropdown-item" href="{{url("/productlist")}}">Products Management</a>
+                  <a class="dropdown-item" href="{{url("/revenuecheck")}}">Check Revenue</a>
                 </div>
               </li>
               <a class="nav-item nav-link active" href="{{url("/logout")}}">Logout</a>

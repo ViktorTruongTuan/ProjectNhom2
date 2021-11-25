@@ -21,6 +21,24 @@ Route::get('/logout','LogoutController@GetLogout');
 
 //ProductList
 Route::get('/productlist','ProductListController@ProductListPage')->middleware('checkrole');
+//CartList
+Route::get('/cartlist','BuyProductController@CartListPage');
+//Add ToCart
+Route::get('/cart/{id}/{quantity}','BuyProductController@AddToCart')->middleware('checklogin');
+
+//Delete CartItem
+Route::get('deletecartitem/{id}','BuyProductController@DeleteCartItem');
+//Buy Product
+Route::get('/createorderinfor','BuyProductController@CreateOrderInforPage');
+Route::post('/createorderinfor','BuyProductController@PostCreateOrderInfor');
+//Order History
+Route::get('/orderhistory','BuyProductController@OrderHistory');
+//Order Detail
+Route::get('/orderdetail/{id}','BuyProductController@OrderDetail');
+//Revenue Check
+Route::get('/revenuecheck','BuyProductController@RevenueCheck');
+Route::post('/revenuecheck','BuyProductController@RevenueCheck');
+
 //Search Product
 Route::post('/','ProductListController@SearchByCategory');
 
@@ -38,8 +56,7 @@ Route::post('/updateproduct','ProductListController@PostUpdateProduct')->middlew
 Route::get('/register','registerController@RegisterPage');
 Route::post('/register','registerController@PostRegister');
 
-Route::get('/test','TestControler@getTest');
-Route::post('/test','TestControler@postFile');
+
 
 //Staff List
 Route::get('/stafflist','StaffListController@index')->middleware('checkrole');
@@ -60,3 +77,5 @@ Route::post('/adduser', 'UserListController@postAddUser')->middleware('checkrole
 Route::get('/admin-userlist/update/{email}', 'UserListController@updateUser')->middleware('checkrole');
 Route::post('/admin-userlist/update/{email}', 'UserListController@postUpdateUser')->middleware('checkrole');
 Route::get('/admin-userlist/delete/{email}', 'UserListController@delete');
+//Test
+Route::get('/test','BuyProductController@RevenueCheck');
