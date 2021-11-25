@@ -54,6 +54,7 @@
                   <a class="dropdown-item" href="{{url("/userlist")}}">UserList</a>
                   <a class="dropdown-item" href="{{url("/stafflist")}}">Staff Info</a>
                   <a class="dropdown-item" href="{{url("/productlist")}}">Products Management</a>
+                  <a class="dropdown-item" href="{{url("/revenuecheck")}}">Check Revenue</a>
                 </div>
               </li>
               <a class="nav-item nav-link active" href="{{url("/logout")}}">Logout</a>
