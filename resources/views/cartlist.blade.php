@@ -14,6 +14,7 @@
       </tr>
     </thead>
     <tbody>
+        @if (session()->has('cart'))
         @foreach ($products as $product )
         <tr>
             <td>{{$product['ProductName']}}</td>
@@ -25,6 +26,10 @@
 
           </tr>
         @endforeach
+        @else
+        Your Cart Is Empty
+        @endif
     </tbody>
   </table>
+  <a href="/createorderinfor" class="btn btn-default" style="border-style:solid;border-color: blue;float:right;">Check Out</a>
 @endsection

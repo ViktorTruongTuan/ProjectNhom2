@@ -1,5 +1,13 @@
-@extends('master');
+@extends('master')
+@push('styles')
+<script>
+    $(document).ready(function(){
+        setInterval(() => {
+            window.location.replace("http://localhost:8000/");
+        }, 3000);
+    });
+    </script>
+@endpush
 @section('content')
-<h4>Order Success</h4>
-<a href="/">Continue Buy Product</a>
+<a href="/">{{$message}}</a>
 @endsection
